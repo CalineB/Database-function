@@ -1,0 +1,6 @@
+%syntax-version=1.0.0
+%project=sap
+
+init 2024-10-21T22:54:14Z System Administrator <root@MacBook-Air-de-Caline.local> # Création de la table principale
+add_new_verses 2024-10-22T20:48:41Z System Administrator <root@MacBook-Air-de-Caline.local> # ajout de versets supplémentaires
+add_value_bible_version 2024-10-22T21:07:59Z System Administrator <root@MacBook-Air-de-Caline.local> # ajout de la version

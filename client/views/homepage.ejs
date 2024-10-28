@@ -1,0 +1,63 @@
+<%- include('./partials/header.ejs')  %>
+
+    <div class="centered">
+        <em class="verse" id="current-verse"></em> 
+        <i id="current-from"></i> 
+        <span id="current-version"></span>
+    
+        <% if (Array.isArray(verses) && verses.length > 0) { %>
+            <ul id="verse-list" style="display: none;">
+                <% for(let verse of verses) { %> 
+                    <li>
+                        <strong><%= verse.verse %></strong> 
+                        <br> <em><%= verse.from %></em> 
+                        <span>[<%= verse.version %>]</span>
+                    </li>
+                <% } %>
+            </ul>
+        <% } else { %>
+            <p>Aucun verset disponible.</p>
+        <% } %>
+    </div>
+
+    <%- include('./partials/footer.ejs')  %>
+
+
+    <script>
+        // Obtenir tous les versets
+        const verses = document.querySelectorAll('#verse-list li');
+        const currentVerseEl = document.getElementById('current-verse');
+        const currentFromEl = document.getElementById('current-from');
+        const currentVersionEl = document.getElementById('current-version');
+        let index = 0; 
+    
+        // Fonction pour afficher le verset suivant
+        function showNextVerse() {
+            if (verses.length === 0) return; // Vérifier s'il y a des versets
+    
+            currentVerseEl.classList.add('verse');
+        currentFromEl.classList.add('verse');
+        currentVersionEl.classList.add('verse');
+
+            // Récupérer le verset actuel
+            const verse = verses[index];
+            currentVerseEl.innerHTML = verse.querySelector('strong').innerHTML + '<br>';
+            currentFromEl.innerHTML = verse.querySelector('em').innerHTML;
+            currentVersionEl.innerHTML = verse.querySelector('span').innerHTML;
+            
+           
+            index = (index + 1) % verses.length; 
+        }
+    
+        setTimeout(() => {
+            currentVerseEl.classList.remove('verse');
+            currentFromEl.classList.remove('verse');
+            currentVersionEl.classList.remove('verse');
+        }, 3000);
+
+
+      
+        showNextVerse();
+        // Changer le verset toutes les 15 secondes (15000 ms)
+        setInterval(showNextVerse, 15000);
+    </script>
